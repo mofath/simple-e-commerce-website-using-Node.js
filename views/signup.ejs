@@ -1,0 +1,52 @@
+<%- include('parts/headers') %>
+<%- include('parts/navbar') %>
+
+<div class="container text-center">
+    <h3>Create Acount</h3>
+    <form action="/signup" method="POST">
+        <!-- ----------------------------- username input ------------------------ -->
+        <input type="text" class="form-control" name="username" placeholder="Username">
+        <% let usernameError = validationError.find(err=> err.param === 'username' ) %>
+        <% if(usernameError) { %>
+        <p class="alert alert-danger">
+            <%= usernameError.msg  %>
+        </p>
+        <% } %>
+
+        <!-- ----------------------------- email input ------------------------ -->
+        <input type="email" class="form-control" name="email" placeholder="E-mail">
+        <% let emailError = validationError.find(err=> err.param === 'email' ) %>
+        <% if(emailError) { %>
+        <p class="alert alert-danger">
+            <%= emailError.msg  %>
+        </p>
+        <% } %>
+
+        <!-- ----------------------------- password input ------------------------ -->
+        <input type="password" class="form-control" name="password" placeholder="Password">
+        <% let passwordError = validationError.find(err=> err.param === 'password' ) %>
+        <% if(passwordError) { %>
+        <p class="alert alert-danger">
+            <%= passwordError.msg  %>
+        </p>
+        <% } %>
+
+        <!-- ----------------------------- confirm password input ------------------------ -->
+        <input type="password" class="form-control" name="confirm-password" placeholder="Confirm Password">
+        <% let confirmPasswordError = validationError.find(err=> err.param === 'confirmPassword' ) %>
+        <% if(confirmPasswordError) { %>
+        <p class="alert alert-danger">
+            <%= confirmPasswordError.msg  %>
+        </p>
+        <% } %>
+
+        <!-- ----------------------------- submit input ------------------------ -->
+        <input type="submit" value="Create Account" class="btn btn-primary">
+    </form>
+    <br>
+    <div>
+        Already have account? <a href="/login">Login</a>
+    </div>
+</div>
+
+<%- include('parts/footer') %>

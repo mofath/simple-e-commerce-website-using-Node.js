@@ -1,0 +1,41 @@
+<%- include('parts/headers') %>
+<%- include('parts/navbar') %>
+
+<div class="container">
+
+    <% if(items.length === 0 ) { %>
+    <p class="alert alert-danger">
+        There's no item in your cart yet!
+    </p>
+    <% } else { %>
+    <table>
+        <thead>
+            <td>No</td>
+            <td>Product Name</td>
+            <td>Price</td>
+            <td>Amount</td>
+            <td>Total</td>
+        </thead>
+        <tbody>
+            <% for(let i=0; i< items.length; i++) { %>
+            <tr>
+                <td><%= i+1 %></td>
+                <td><%= items[i].name %></td>
+                <td><%= items[i].price %></td>
+                <form action="" method="post">
+                    <td><input type="Number" name="amount" class="form-control" value="<%= items[i].amount %>"></td>
+                    <td><% items[i].amount * items[i].price %> $</td>
+                    <td>
+                        <input type="hidden" name="itemId" value="<%= items[i]._id %>">
+                        <input type="submit" value="Save" formaction="/cart/save">
+                        <input type="submit" value="Delete" formaction="/cart/delete">
+                    </td>
+                </form>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <% } %>
+</div>
+
+<%- include('parts/footer') %>
